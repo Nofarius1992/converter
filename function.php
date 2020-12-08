@@ -16,17 +16,20 @@
 	function getCourseSecondaryCurrency($arr, $currency) {
 		foreach($arr as $course) {
 			if($course['ccy'] == $currency) {
-				$courseCurrency = $course['buy'];
+				$courseCurrency = $course['sale'];
 				return $courseCurrency;
 			}
 		}
 	}
 
-	// Конвертируем украинскую валюту гривны 
+	// Конвертируем украинскую валюту с зарубежной
 	function convertPrimaryUAH($courseSecondary, $countMoney) {
 		$finishMoney = $countMoney / $courseSecondary;
 		return $finishMoney;
 	}
 
-	
+	// Конвертируем зарубежную валюту с гривнами
+	function convertSecondaryUAH($primaryCurrency, $course) {
+
+	}
  ?>
