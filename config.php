@@ -1,0 +1,11 @@
+<?php 
+	$host = 'localhost'; // адрес сервера 
+	$database = 'converter'; // имя базы данных
+	$user = 'root'; // имя пользователя
+	$password = ''; // пароль
+
+	$link = 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5'; // ссылка api приватбанка
+	
+
+	$connect = mysqli_connect($host, $user, $password, $database);
+ ?>
