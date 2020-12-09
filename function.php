@@ -12,6 +12,16 @@
 		return $courses;
 	}
 
+	// Получаем курс первичной валюты
+	function getCoursesPrimaryCurrency($arr, $currency) {
+		foreach($arr as $course) {
+			if($course['ccy'] == $currency) {
+				$courseCurrency = $course['buy'];
+				return $courseCurrency;
+			}
+		}
+	}
+
 	// Получаем курс вторичной валюты 
 	function getCourseSecondaryCurrency($arr, $currency) {
 		foreach($arr as $course) {
@@ -23,13 +33,28 @@
 	}
 
 	// Конвертируем украинскую валюту с зарубежной
-	function convertPrimaryUAH($courseSecondary, $countMoney) {
-		$finishMoney = $countMoney / $courseSecondary;
+	function convertPrimaryUAH($course, $countMoney) {
+		$finishMoney = $countMoney / $course;
 		return $finishMoney;
 	}
 
 	// Конвертируем зарубежную валюту с гривнами
-	function convertSecondaryUAH($primaryCurrency, $course) {
+	function convertSecondaryUAH($course, $countMoney) {
+		$finishMoney = $countMoney * $course;
+		return $finishMoney;
+	}
 
+	// Конвертируем зарубежную валюта в зарубежную
+	function convertForeignCurrency($coursePrimary, $courseSecondary, $countMoney) {
+		$moneyBuy = $countMoney * $coursePrimary;
+		$finishMoney = $moneyBuy / $courseSecondary;
+		return $finishMoney;
+	}
+
+	// Записываем в базу данных
+	function historyRecord($primaryCurrency, $countPrimary, $secondaryCurrency, $countSecondary, $conn) {
+		$sql = "INSERT INTO history (primaryCurrency, countPrimary, secondaryCurrency, countSecondary) 
+		VALUES ('" . $primaryCurrency . "', '" . $countPrimary . "', '" . $secondaryCurrency . "', '" . $countSecondary . "')";
+		mysqli_query($conn, $sql);
 	}
  ?>

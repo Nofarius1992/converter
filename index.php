@@ -8,7 +8,7 @@
 <body>
 	<h1>Currency Converter</h1>
 
-	<form action="/apiConverter.php" method="POST">
+	<form id='convert' action="http://converter.local/apiConverter.php" method="POST">
 			
 			<div class="primaryCurrency">
 				<h3>Выберите с какой валюты делать конвертацию?</h3>
@@ -53,5 +53,11 @@
 			<input name="coutnCurrency" type="text">
 			<button type="submit">Конвертировать</button>
 	</form>
+
+	<section class='history'>
+		<h3>История конвертаций</h3>
+		<button>Посмотреть историю</button>
+	</section>
+
 </body>
 </html>

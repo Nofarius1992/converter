@@ -7,5 +7,5 @@
 	$link = 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5'; // ссылка api приватбанка
 	
 
-	$connect = mysqli_connect($host, $user, $password, $database);
+	$conn = mysqli_connect($host, $user, $password, $database);
  ?>
