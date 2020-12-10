@@ -51,7 +51,7 @@
 		return $finishMoney;
 	}
 
-	// Записываем в базу данных
+	// Записываем в базу данных историю конвертаций
 	function historyRecord($primaryCurrency, $countPrimary, $secondaryCurrency, $countSecondary, $conn) {
 		$sql = "INSERT INTO history (primaryCurrency, countPrimary, secondaryCurrency, countSecondary) 
 		VALUES ('" . $primaryCurrency . "', '" . $countPrimary . "', '" . $secondaryCurrency . "', '" . $countSecondary . "')";
