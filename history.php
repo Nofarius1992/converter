@@ -2,12 +2,12 @@
 	include "config.php";
 	include "function.php";
 
-	$sql = "SELECT * FROM history ORDER BY id DESC LIMIT 5";
+	$sql = "SELECT countHistory FROM settings";
 	$result = $conn->query($sql);
-	$row = mysqli_fetch_assoc($result);
-	print_arr($row);
-
-
+	var_dump($result);
+	$count = 2;
+    $sql = "SELECT * FROM history ORDER BY id DESC LIMIT $count";
+    $result = $conn->query($sql);
  ?>
 
 <div class="history-table">
@@ -21,15 +21,20 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
+            <?php
+                // Цыкл вывода истории конвертации
+                while ($row = mysqli_fetch_assoc($result)) {
+                    ?>
+                    <tr>
+                        <td><?php echo $row['countPrimary'] . ' ' . mb_strtolower($row['primaryCurrency']) ?></td>
+                        <td><?php echo $row['countSecondary'] . ' ' . mb_strtolower($row['secondaryCurrency']) ?></td>
+                        <td><?php echo $row['date'] ?></td>
+                    </tr>
+                    <?php
+                    print_arr($row);
+                }
+            ?>
 		</tbody>
-		
-
-
 	</table>
 </div>
 
